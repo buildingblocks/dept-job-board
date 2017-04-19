@@ -1,0 +1,51 @@
+// job-listing
+
+.job-listing {
+    position: relative;
+    display: block;
+    width: 100%;
+    padding: $vr*2 $ggw;
+    margin-bottom: $vr*3;
+    cursor: pointer;
+
+    &:after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        height: 2px;
+        left: 0;
+        width: 15%;
+        background-color: $brand-color-a;
+        transition: width 500ms ease-in-out;
+    }
+
+    &:hover {
+
+        &:after {
+            width: 40%;
+        }
+
+        .job-listing__title {
+            color: darken($brand-color-a, 10%);
+            margin-left: $ggw;
+        }
+    }
+}
+
+.job-listing__title {
+    font-family: $font-family-serif;
+    font-style: italic;
+    padding-bottom: $vr;
+    margin-bottom: $vr*3;
+    color: $brand-color-a;
+    transition: color 300ms, margin 300ms ease-in-out;
+}
+
+.job-listing__body {
+}
+
+.job-listing__description {
+}
+
+.job-listing__detail {
+}

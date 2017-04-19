@@ -7,10 +7,15 @@ class JobListings extends Component {
             <div>
                 {
                 this.props.JobData.map(function(job) {
+                const created = job.updated_at.substring(0, job.updated_at.indexOf('T'));
                     
                     return(
-                        <div key={job.id}>
-                            <a href={job.absolute_url} target="_blank">{job.absolute_url}</a>
+                        <div className="job-listing" key={job.id}>
+                            <h3 className="job-listing__title">{job.title}</h3>
+                            <div className="job-listing__body">
+                                <p>Last updated: {created}</p>
+                                {job.location.name ? <p>Job is in: {job.location.name}</p> : null}
+                            </div>
                         </div>
                     );
                 }, this)

@@ -1,9 +1,9 @@
-// results
+// job-board
 
-.results {
+.job-board {
 }
 
-.results__header {
+.job-board__header {
     margin-bottom: $vr*2;
 
     @media #{$BPD} {
@@ -11,15 +11,15 @@
     }
 }
 
-.results__title {
+.job-board__title {
     @extend .title--style-c;
     color: $brand-color-d;
 }
 
-.results__amount {
+.job-board__amount {
     color: $brand-color-a;
 }
 
-.results__body {
+.job-board__body {
 
 }
