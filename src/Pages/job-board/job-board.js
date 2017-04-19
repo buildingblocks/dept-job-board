@@ -39,7 +39,7 @@ class JobBoard extends Component {
     render() {
         return (
             <div>
-                <div>Job Board</div>
+                <h1>Job Board</h1>
                 <JobFeed
                     JobData={this.state.jobData}
                 />

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 
 class JobFeed extends Component {
 
@@ -10,7 +11,7 @@ class JobFeed extends Component {
                 this.props.JobData.map(function(job) {
                     
                     return(
-                        <li key={job.id}><a href={job.id}>{job.title}</a></li>
+                        <li key={job.id}><Link to={`/job-post/${job.id}`}>{job.title}</Link></li>
                     );
                 }, this)
                 }

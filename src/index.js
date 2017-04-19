@@ -3,10 +3,12 @@ import ReactDOM from 'react-dom';
 import {
   BrowserRouter as Router,
   Route,
+  Link, 
   Switch
 } from 'react-router-dom'
 
 import JobBoard from "./Pages/job-board/job-board";
+import JobPost from "./Pages/job-post/job-post";
 
 import './styles/styles.css';
 
@@ -25,6 +27,7 @@ const Root = () => {
                                 <Switch>
                                     <Route exact path="/" component={JobBoard} />
                                     <Route path="/job-board/" component={JobBoard} />
+                                    <Route path="/job-post/" component={JobPost} />
                                     <Route component={JobBoard} />
                                 </Switch>
                             </Router>
