@@ -22,6 +22,10 @@
 
 .job-board__body {
 
+    a {
+        text-decoration: none;
+        color: $brand-black;
+    }
 }
 
 .back-btn {

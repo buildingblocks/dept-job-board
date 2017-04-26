@@ -7,6 +7,7 @@ import {
 } from 'react-router-dom'
 
 import JobBoard from './Pages/job-board/job-board';
+import JobDetailPage from './Pages/job-detail/job-detail';
 
 import './styles/styles.css';
 
@@ -25,6 +26,7 @@ const Root = () => {
                                 <Switch>
                                     <Route exact path="/" component={JobBoard} />
                                     <Route path="/job-board/" component={JobBoard} />
+                                    <Route path="/job-detail/:jobId" component={JobDetailPage} />
                                     <Route component={JobBoard} />
                                 </Switch>
                             </Router>
