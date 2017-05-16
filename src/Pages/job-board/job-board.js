@@ -1,6 +1,8 @@
 import React from "react";
 import axios from "axios";
 
+import JobList from "../../Components/JobList";
+
 class JobBoard extends React.Component {
 
     constructor (props) {
@@ -15,9 +17,10 @@ class JobBoard extends React.Component {
         axios.get('https://api.greenhouse.io/v1/boards/dept/jobs/')
         .then(res => {
             var jobs = res.data.jobs;
-            console.log(jobs);
 
             this.setState({ jobList: jobs });
+
+            console.log(this.state.jobList);
         })
     }
 
@@ -29,6 +32,7 @@ class JobBoard extends React.Component {
         return (
             <div>
                 <h1>Job board</h1>
+                <JobList data={this.state.jobList} />
             </div>
         )
     }
