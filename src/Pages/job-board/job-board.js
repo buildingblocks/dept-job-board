@@ -2,6 +2,9 @@ import React from "react";
 import axios from "axios";
 
 import JobList from "../../Components/JobList";
+import JobListSelect from "../../Components/JobListSelect";
+
+import '../job-board/job-board.css';
 
 class JobBoard extends React.Component {
 
@@ -30,9 +33,15 @@ class JobBoard extends React.Component {
 
     render () {
         return (
-            <div>
+            <div class="jobList">
                 <h1>Job board</h1>
-                <JobList data={this.state.jobList} />
+                <div className="jobList-container">
+                    <JobList data={this.state.jobList} />
+                </div>
+                <div className="jobList-select">
+                    <h2>Select location</h2>
+                    <JobListSelect data={this.state.jobList} />
+                </div>
             </div>
         )
     }
