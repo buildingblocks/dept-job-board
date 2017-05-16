@@ -3,13 +3,14 @@ import ReactDOM from 'react-dom';
 import {
   BrowserRouter as Router,
   Route,
-  Link,
+//   Link,
   Switch
 } from 'react-router-dom'
 
 import Home from './Pages/home/home';
 import NotFound from "./Pages/404/404";
 import About from "./Pages/about/about";
+import JobBoard from "./Pages/job-board/job-board";
 
 import './styles/styles.css';
 
@@ -28,6 +29,7 @@ const Root = () => {
                                 <Switch>
                                     <Route exact path="/" component={Home} />
                                     <Route path="/about/" component={About} />
+                                    <Route path="/job-board/" component={JobBoard} />
                                     <Route component={NotFound} />
                                 </Switch>
                             </Router>
