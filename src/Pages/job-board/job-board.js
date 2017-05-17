@@ -2,7 +2,7 @@ import React from "react";
 import axios from "axios";
 
 import JobList from "../../Components/JobList";
-import JobListSelect from "../../Components/JobListSelect";
+import JobListFilters from "../../Components/JobListFilters";
 
 import '../job-board/job-board.css';
 
@@ -39,8 +39,8 @@ class JobBoard extends React.Component {
                     <JobList data={this.state.jobList} />
                 </div>
                 <div className="jobList-select">
-                    <h2>Select location</h2>
-                    <JobListSelect data={this.state.jobList} />
+                    <h2>Job Filters</h2>
+                    <JobListFilters data={this.state.jobList} />
                 </div>
             </div>
         )
