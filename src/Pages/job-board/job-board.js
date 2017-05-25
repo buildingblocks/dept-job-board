@@ -13,9 +13,11 @@ class JobBoard extends React.Component {
         
         this.state = ({
             jobList: [],
+            jobListFilter: [],
             jobLocation: [],
             jobName: [],
-            value: ""
+            locationList: "Location",
+            titleList: "Name",
          });
 
         this.getJobInfo = this.getJobInfo.bind(this);
@@ -27,58 +29,78 @@ class JobBoard extends React.Component {
         .then(res => {
             var jobs = res.data.jobs;
 
-            this.setState({jobList: jobs});
-
-
-            // Put this filter into a function and pass in filter param
-            // Filter job locaitons
-            var filterLocations = jobs.map(function(locations) {
-                return locations.location.name;
+            this.setState({
+                jobList: jobs,
+                jobListFilter: jobs
             });
-            var filterUniqueLocations = filterLocations.filter(function(locations, index) {
-                return filterLocations.indexOf(locations) === index;
-            })
-            this.setState({jobLocation: filterUniqueLocations});
-
-            // Filter job titles
-            var filterNames = jobs.map(function(names) {
-                return names.title;
-            });
-            var filterUniqueNames = filterNames.filter(function(title, index) {
-                return filterNames.indexOf(title) === index;
-            })
-            this.setState({jobName: filterUniqueNames});
 
             console.log(this.state.jobList);
+
+            // params in order, Array object name, array, state, if required seconday array object name
+            this.selectFilter('location', jobs, 'jobLocation', 'name');
+            this.selectFilter('title', jobs, 'jobName');
         })
     }
 
-    handleChange (newOption){
-        console.log("changed");
-        // this.setState({value: newOption});
-        // console.log(this.state.value);
-     }
+    selectFilter (filterValue, array, stateName, filterValueTwo) {
 
-    // This function needs both the jobs variable and the fitler value
-    // listFilter (filterValue, jobs) {
-    //         var filterItem = jobs.map(function(filter) {
-    //             return filter.filterValue;
-    //         });
-    //         var filterUniqueItems = filterItem.filter(function(filter, index) {
-    //             return filterItem.indexOf(filter) === index;
-    //         })
-    // }
+            var filterItem = "";
+
+            if (typeof filterValueTwo === 'undefined') {
+                filterItem = array.map(function(filter) {
+                    return filter[filterValue];
+                });
+            }
+            else {
+                filterItem = array.map(function(filter) {
+                    return filter[filterValue][filterValueTwo];
+                });
+            }
+            var filterUniqueItems = filterItem.filter(function(filter, index) {
+                return filterItem.indexOf(filter) === index;
+            })
+            this.setState({[stateName]: filterUniqueItems});
+            
+    }
 
     componentDidMount() {
         this.getJobInfo();
     }
+
+    handleChange (newOption, inputName){
+
+        this.setState({[inputName]: newOption}, function () {
+            this.filterJobList();
+        });
+     }
+
+     filterJobList () {
+        var jobArray = this.state.jobList;
+        var filteredArray = [];
+        var location = this.state.locationList
+        var title = this.state.titleList;
+
+        // At the moment the filter will not work on the default Locaiton/Title valuse
+        if (location !== "Location" || title !== "Name")
+        {
+            for (var i=jobArray.length-1; i>=0; i--) {
+                if (jobArray[i].location.name.includes (location) && jobArray[i].title.includes (title))  {
+                    filteredArray.push(jobArray[i]);
+                }
+            }
+            console.log(filteredArray);
+            this.setState({jobListFilter: filteredArray}, function () {
+                console.log(this.state.jobListFilter);
+            });
+        }
+     }
 
     render () {
         return (
             <div className="jobList">
                 <h1>Job board</h1>
                 <div className="jobList-container">
-                    <JobList data={this.state.jobList} />
+                    <JobList data={this.state.jobListFilter} />
                 </div>
                 <div className="jobList-select">
                     <h2>Job Filters</h2>

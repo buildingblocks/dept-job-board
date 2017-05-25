@@ -15,9 +15,9 @@ class JobListFilters extends React.Component {
 
     handleSelectChange (event){
         var option = event.target.value;
+        var inputName = event.target.className;
         this.setState({value: event.target.value});
-        console.log(option)
-        this.props.handleChange(option);
+        this.props.handleChange(option, inputName);
      }
 
     render () {
