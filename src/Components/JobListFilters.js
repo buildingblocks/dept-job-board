@@ -1,38 +1,45 @@
 import React from "react";
+import PropTypes from 'prop-types';
 
 class JobListFilters extends React.Component {
 
     constructor (props) {
         super (props);
-
-        this.state = { jobFilters: [] };
         
-        this.returnLocation = this.returnLocation.bind(this);
+        this.state = ({
+            value: ''
+         });
+
+         this.handleSelectChange = this.handleSelectChange.bind(this);
     }
 
-    // Move JSX out of there and into bottom render
-    // This should only be JS
-    returnLocation () {
-        return (
-            this.props.data.map((location, index) => (
-                <option key={location.location.name.toString()} value={location.location.name}>{location.location.name}</option>
-            ))
-        )
-    }
-
-    // Use this to filter results to unique values
-    // this.props.data.filter((location, index, inputArray) => (
-    //     return inputArray.indexOf(location.location.name) == location.location.name;
-    // ))
+    handleSelectChange (event){
+        var option = event.target.value;
+        this.setState({value: event.target.value});
+        console.log(option)
+        this.props.handleChange(option);
+     }
 
     render () {
         return (
-            <select>
-                <option value="Location"> Location</option>
-                {this.returnLocation()}
-            </select>
+            <div>
+                <select className={this.props.className} onChange={this.handleSelectChange}>
+                    <option value={this.props.name}>{this.props.name}</option>
+                        {
+                            this.props.data.map((jobFilter, index) => (
+
+                            <option key={index} value={jobFilter}>{jobFilter}</option>
+                            
+                        ))
+                        }
+                </select>
+            </div>
         )
     }
+}
+
+JobListFilters.propTypes = {
+    handleChange: PropTypes.func.isRequired
 }
 
 export default JobListFilters;

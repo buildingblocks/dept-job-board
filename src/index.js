@@ -17,10 +17,10 @@ import './styles/styles.css';
 const Root = () => {
     return(
         
-        <div id="page" class="page">
+        <div id="page" className="page">
             <main className="main" id="main">
-                <header class="header" id="header" role="banner" itemscope itemtype="http://schema.org/WPHeader">
-                    <h1 className="visually-hidden" itemscope itemtype="http://schema.org/WPHeader">Github Repos Search</h1>
+                <header className="header" id="header" role="banner" itemScope itemType="http://schema.org/WPHeader">
+                    <h1 className="visually-hidden" itemScope itemType="http://schema.org/WPHeader">Github Repos Search</h1>
                 </header>
                 <div className="layout">
                     <div className="region region--a">

@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from 'prop-types';
 
 const SomeText = (props) => {
     return (
@@ -7,7 +8,7 @@ const SomeText = (props) => {
 }
 
 SomeText.propTypes = {
-    tagline: React.PropTypes.string.isRequired
+    tagline: PropTypes.string.isRequired
 }
 
 export default SomeText;
